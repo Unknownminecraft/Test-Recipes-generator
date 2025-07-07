@@ -1,159 +1,255 @@
-@font-face {
-    font-family: 'Minecraft-Ten';
-    src: url('assets/webfonts/Minecraft-Ten-ed29a.otf') format('opentype');
-}
+/* START OF CUSTOM RECIPE MAKER CSS FILE */
 
+/* General Styles */
 body {
-    background-color: #CDC1FF;
-    font-family: sans-serif;
-    margin: 20px;
-    overflow-y: scroll;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #F5AD42;
+  color: #333;
+  scroll-behavior: smooth;
 }
 
-body::-webkit-scrollbar {
-    width: 12px;
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+  background-color: #CEF57F;
+  border: 3px solid #8AF584;
 }
 
-body::-webkit-scrollbar-track {
-    background: #BFECFF;
+.box {
+  background-color: #8AF584;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  border: 2px solid #69c65e;
 }
 
-body::-webkit-scrollbar-thumb {
-    background-color: #FFCCEA;
-    border-radius: 20px;
-    border: 3px solid #BFECFF;
+h1, h2 {
+  color: darkgreen;
+  font-family: 'Minecraft-Ten-ed29a', sans-serif;
+  margin: 0;
+  padding: 0.5rem 0;
 }
 
-.page-border {
-    background-color: #BFECFF;
-    padding: 15px;
-    border-radius: 10px;
+header {
+  background-color: darkgreen;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #8AF584;
+  padding: 1rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
 }
 
-.title {
-    font-family: 'Minecraft-Ten', sans-serif;
-    font-size: 2.5em;
+.sidebar.active {
+  transform: translateX(0);
 }
 
-.intro-text {
-    color: red;
-    font-size: 0.9em;
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-hr {
-    border: 1px solid #FFCCEA;
-    margin: 20px 0;
+.sidebar li {
+  margin: 1rem 0;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.section-box {
-    background-color: #FFF6E3;
-    border: 2px solid #FFCCEA;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: left;
+.close-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: red;
+  float: right;
 }
 
-.collapsible {
-    background-color: #FFCCEA;
-    color: #333;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: center;
-    outline: none;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
-    margin-bottom: 10px;
+.hamburger {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
 }
 
-.content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: transparent;
+/* Edition Selector */
+.edition-selector label {
+  margin-right: 1rem;
+  font-weight: bold;
 }
 
-input[type="text"],
-textarea,
-input[type="file"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    display: block;
+.warning {
+  color: red;
+  font-size: 0.9rem;
 }
 
-textarea {
-    resize: vertical;
+/* Recipe Buttons */
+.recipe-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
-input[type="radio"], input[type="checkbox"] {
-    margin-right: 5px;
+.recipe-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #69c65e;
+  background-color: #CEF57F;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease;
 }
 
-button {
-    background-color: #FFCCEA;
-    border: none;
-    color: #333;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: bold;
+.recipe-btn:hover {
+  transform: scale(1.05);
 }
 
-button:disabled {
-    background-color: #cccccc;
-    color: #666666;
-    cursor: not-allowed;
-    opacity: 0.5;
+.recipe-btn img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
 }
 
-.download-note {
-    color: red;
-    font-size: 0.9em;
+/* Advanced Settings */
+.advanced-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.manual-columns {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.toggle input {
+  transform: scale(1.5);
+  margin-left: 1rem;
 }
 
-.manual-column {
-    width: 30%;
-    min-width: 200px;
-}
-.manual-column label {
-    display: block;
-}
-
-
-.footer {
-    background-color: #FFCCEA;
-    color: #333;
-    text-align: center;
-    padding: 10px;
-    border-radius: 0 0 8px 8px;
-    margin-top: 20px;
+/* Input Fields */
+.input-fields input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-.footer a {
-    color: #0000EE;
-    text-decoration: none;
+.input-fields label {
+  font-weight: bold;
 }
+
+.arrow {
+  font-size: 2rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.tooltip-btn {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 1.1rem;
+}
+
+.tooltip {
+  display: none;
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 5px;
+  position: relative;
+  top: 5px;
+}
+
+.tooltip-btn:hover + .tooltip {
+  display: inline-block;
+}
+
+/* Slider */
+input[type="range"] {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+#outputDisplay {
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+
+/* Process Button */
+#processBtn {
+  display: block;
+  margin: auto;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: #69c65e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#processBtn:hover {
+  transform: scale(1.05);
+}
+
+/* JSON Output */
+.json-output {
+  background-color: #333;
+  color: white;
+  overflow-x: auto;
+  padding: 1rem;
+  white-space: pre;
+  border-radius: 5px;
+}
+
+.json-code {
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.json-buttons {
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+.json-buttons button {
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  border: none;
+  background-color: #8AF584;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+footer {
+  background-color: #FFC9C9;
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 8px;
+}
+
+/* END OF CUSTOM RECIPE MAKER CSS FILE */
