@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json file to Addon</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <div class="page-border">
+        <div class="container">
+            <h1 class="title">Json file to Addon</h1>
+            <h2>Json file to Addon/mcpack or mcaddon</h2>
+            <p class="intro-text">Upload the Json file and turn them into minecraft addons (bedrock edition only).</p>
+
+            <hr>
+
+            <div class="section-box">
+                <p><strong>Type of add-on:</strong></p>
+                <label><input type="radio" name="addon_type" value="recipes" onclick="showOptions()"> Recipes Addon</label>
+                <label><input type="radio" name="addon_type" value="loot" onclick="showOptions()"> Loot Table Addon</label>
+                <label><input type="radio" name="addon_type" value="entities" onclick="showOptions()"> Custom entities</label>
+                <label><input type="radio" name="addon_type" value="manual" onclick="showOptions()"> manual folder creation</label>
+            </div>
+
+            <hr>
+
+            <button class="collapsible" onclick="toggleAdvancedSettings()">Advance Settings 🔧✏️</button>
+            <div class="content" id="advanced-settings">
+                <div id="recipes-options" class="addon-options" style="display:none;">
+                    <div class="section-box">
+                        <p>Folders:</p>
+                        <label for="recipes-folder">🫕 recipes: <input type="text" id="recipes-folder-name" value="recipes" class="small-input"></label>
+                        <input type="file" id="recipes-files" multiple accept=".json">
+                        <br>
+                        <button onclick="addFolder()">+📁 Add new</button>
+                        <div id="new-folders-container"></div>
+                    </div>
+                </div>
+
+                <div id="loot-options" class="addon-options" style="display:none;">
+                    <div class="section-box">
+                        <p>Folders:</p>
+                        <label for="loot-table-files">Loot Table:</label><input type="file" id="loot-table-files" multiple accept=".json"><br>
+                        <label for="entities-files-loot">Entities:</label><input type="file" id="entities-files-loot" multiple accept=".json"><br>
+                        <label for="equipment-files">Equipment:</label><input type="file" id="equipment-files" multiple accept=".json"><br>
+                        <label for="fishing-files">gameplay- fishing:</label><input type="file" id="fishing-files" multiple accept=".json"><br>
+                        <label for="chest-files">Chest:</label><input type="file" id="chest-files" multiple accept=".json"><br>
+                        <label for="function-files-loot">Function:</label><input type="file" id="function-files-loot" multiple accept=".mcfunction,.json"><br>
+                    </div>
+                </div>
+
+                <div id="entities-options" class="addon-options" style="display:none;">
+                     <div class="section-box">
+                        <p>Folders:</p>
+                        <label for="entities-files-custom">Entities:</label><input type="file" id="entities-files-custom" multiple accept=".json"><br>
+                        <label for="loot-table-files-custom">Loot Table:</label><input type="file" id="loot-table-files-custom" multiple accept=".json"><br>
+                        <label for="spawn-rules-files">Spawn Rules:</label><input type="file" id="spawn-rules-files" multiple accept=".json"><br>
+                        <label for="function-files-custom">Function:</label><input type="file" id="function-files-custom" multiple accept=".mcfunction,.json"><br>
+                    </div>
+                </div>
+            </div>
+
+             <div id="manual-options" class="addon-options" style="display:none;">
+                <div class="section-box">
+                    <p>Generate Empty pack for both Resources & Behaviour Pack</p>
+                    <div class="manual-columns">
+                        <div class="manual-column">
+                            <p><strong>Resources Pack</strong></p>
+                            <label><input type="checkbox" class="rp-folder" value="textures"> textures</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="models"> models</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="animations"> animations</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="animation_controllers"> animation_controllers</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="biomes"> biomes</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="entity"> entity</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="sounds"> sounds</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="render_controllers"> render_controllers</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="particles"> particles</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="ui"> ui</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="texts"> texts</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="fogs"> fogs</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="attachables"> attachables</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="materials"> materials</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="items"> items</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="client_entities"> client_entities</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="camera"> camera</label><br>
+                             <label><input type="checkbox" class="rp-folder" value="uibt"> uibt</label><br>
+                            <label><input type="checkbox" class="rp-folder" value="font"> font</label><br>
+                            <input type="text" placeholder="+ Add folder" id="rp-custom-folder">
+                        </div>
+                        <div class="manual-column">
+                            <p><strong>Behaviour Pack</strong></p>
+                            <label><input type="checkbox" class="bp-folder" value="entities"> entities</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="spawn_rules"> spawn_rules</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="loot_tables"> loot_tables</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="recipes"> recipes</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="trading"> trading</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="animations"> animations</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="animation_controllers"> animation_controllers</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="blocks"> blocks</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="items"> items</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="features"> features</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="biomes"> biomes</label><br>
+                             <label><input type="checkbox" class="bp-folder" value="structures"> structures</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="scripts"> scripts</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="dialogues"> dialogues</label><br>
+                             <label><input type="checkbox" class="bp-folder" value="item_catalog"> item_catalog</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="cameras"> cameras</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="behavior_tree"> behavior_tree</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="__brarchive"> __brarchive</label><br>
+                             <label><input type="checkbox" class="bp-folder" value="worldgen"> worldgen</label><br>
+                            <label><input type="checkbox" class="bp-folder" value="feature_rules"> feature_rules</label><br>
+                            <input type="text" placeholder="+ Add folder" id="bp-custom-folder">
+                        </div>
+                         <div class="manual-column">
+                            <p><strong>Other json files</strong></p>
+                            <label><input type="checkbox" class="rp-json" value="terrain_texture.json"> terrain_texture.json</label><br>
+                            <label><input type="checkbox" class="rp-json" value="item_texture.json"> item_texture.json</label><br>
+                            <label><input type="checkbox" class="rp-json" value="sounds.json"> sounds.json</label><br>
+                            <label><input type="checkbox" class="rp-json" value="flipbook_textures.json"> flipbook_textures.json</label><br>
+                             <label><input type="checkbox" class="rp-json" value="music_definitions.json"> music_definitions.json</label><br>
+                             <label><input type="checkbox" class="rp-json" value="blocks.json"> blocks.json</label><br>
+                            <label><input type="checkbox" class="rp-json" value="biomes_client.json"> biomes_client.json</label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <button class="collapsible" onclick="toggleManifest()">manifest</button>
+            <div class="content" id="manifest-section">
+                <div class="section-box">
+                    <label for="pack-name">*Pack Name:</label><br>
+                    <input type="text" id="pack-name" required><br>
+
+                    <label for="description">Description:</label><br>
+                    <textarea id="description" rows="3"></textarea><br>
+
+                    <label for="creator-name">Creator Name:</label><br>
+                    <input type="text" id="creator-name"><br>
+
+                    <label for="pack-icon">upload pack_icon:</label><br>
+                    <input type="file" id="pack-icon" accept="image/png"><br>
+
+                    <label for="min-version">minimum version:</label><br>
+                    <input type="text" id="min-version" placeholder="e.g., 1.21.0"><br>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="section-box">
+                <button id="download-mcpack" onclick="downloadAddon('mcpack')">Download mcpack (BP)</button>
+                <p class="download-note">After downloading rename the pack by removing ".zip" at the end.</p>
+                <button id="download-mcaddon" onclick="downloadAddon('mcaddon')" disabled>Download (BP & RP)</button>
+			</div>			
+        </div>
+        <footer class="footer">
+            Made by Unknown Minecraft <a href="https://youtube.com/@decodingmnetwork?si=I8s6gNYWRPU-ISZw" target="_blank">[YouTube]</a> / <a href="https://discord.gg/jx4p9x9fQv" target="_blank">[Discord]</a>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

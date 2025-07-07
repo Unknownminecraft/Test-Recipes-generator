@@ -1,0 +1,159 @@
+@font-face {
+    font-family: 'Minecraft-Ten';
+    src: url('assets/webfonts/Minecraft-Ten-ed29a.otf') format('opentype');
+}
+
+body {
+    background-color: #CDC1FF;
+    font-family: sans-serif;
+    margin: 20px;
+    overflow-y: scroll;
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #BFECFF;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #FFCCEA;
+    border-radius: 20px;
+    border: 3px solid #BFECFF;
+}
+
+.page-border {
+    background-color: #BFECFF;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    font-family: 'Minecraft-Ten', sans-serif;
+    font-size: 2.5em;
+}
+
+.intro-text {
+    color: red;
+    font-size: 0.9em;
+}
+
+hr {
+    border: 1px solid #FFCCEA;
+    margin: 20px 0;
+}
+
+.section-box {
+    background-color: #FFF6E3;
+    border: 2px solid #FFCCEA;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.collapsible {
+    background-color: #FFCCEA;
+    color: #333;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    display: block;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #FFCCEA;
+    border: none;
+    color: #333;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.download-note {
+    color: red;
+    font-size: 0.9em;
+}
+
+.manual-columns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.manual-column {
+    width: 30%;
+    min-width: 200px;
+}
+.manual-column label {
+    display: block;
+}
+
+
+.footer {
+    background-color: #FFCCEA;
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+    margin-top: 20px;
+}
+
+.footer a {
+    color: #0000EE;
+    text-decoration: none;
+}
