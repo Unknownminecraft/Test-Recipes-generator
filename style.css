@@ -1,181 +1,196 @@
-/* Import Custom Font */
+/* General Body and Font Styles */
 @font-face {
-    font-family: 'Minecraft-Ten';
-    src: url('assets/webfonts/Minecraft-Ten-ed29a.otf') format('opentype');
-}
-
-/* Color and Style Variables */
-:root {
-    --bg-color: #FFDCDC;
-    --page-border-color: #BFECFF;
-    --box-bg-color: #FFE8CD;
-    --outer-bg-color: #FFF2EB;
-    --credit-box-color: #FFCCEA;
-    --advanced-box-color: #e0e0e0; /* Silver/Gray */
-    --json-bg-color: #2d3748; /* Contrast Gray */
-    --text-color: #3a3a3a;
-    --red-text: #e53935;
-    --json-key: #90ee90; /* Lime Green */
-    --json-namespace: #ff6b6b; /* Red */
-    --json-string: #87ddfe; /* Blue */
-    --json-punctuation: #ffffff;
-}
-
-/* General Body and Page Layout */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    font-family: 'Minecraft';
+    src: url('../webfonts/Minecraft-Ten-ed29a.otf') format('opentype');
 }
 
 body {
-    font-family: 'Minecraft-Ten', sans-serif;
-    background-color: var(--outer-bg-color);
-    color: var(--text-color);
+    background-color: #FFF2EB;
+    color: #333;
+    font-family: sans-serif;
+    margin: 0;
     padding: 20px;
-    overflow-x: hidden;
-}
-
-.page-border {
-    background-color: var(--page-border-color);
-    padding: 15px;
-    max-width: 950px;
-    margin: 0 auto;
-    border-radius: 15px;
-}
-
-.page-container {
-    background-color: var(--bg-color);
-    padding: 20px;
-    border-radius: 10px;
-    height: 95vh;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--page-border-color) var(--bg-color);
-}
-
-/* UI Sections and Boxes */
-.ui-section {
-    background-color: var(--box-bg-color);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 2px solid rgba(0,0,0,0.1);
 }
 
 h1, h2, h3 {
+    font-family: 'Minecraft', sans-serif;
+}
+
+/* Layout and Container Styles */
+.outer-border-box {
+    background-color: #BFECFF;
+    border: 10px solid #FFDCDC;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-box {
+    background-color: #FFE8CD;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Header and Edition Selection */
+header {
     text-align: center;
+    margin-bottom: 20px;
+}
+
+.edition-selection button {
+    background-color: #FFE8CD;
+    border: 2px solid #BFECFF;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.edition-selection button.selected {
+    background-color: #BFECFF;
+}
+
+#java-warning {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+/* Recipe Type Selection */
+.recipe-type-selection {
+    text-align: center;
+}
+
+.recipe-type-selection h2 {
     margin-bottom: 15px;
 }
-h1 { font-size: 2.5rem; }
-.bold-text { font-weight: bold; }
 
-/* Buttons and Inputs */
-.btn-group {
+.recipe-options {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
-button, .btn {
-    font-family: 'Minecraft-Ten', sans-serif;
-    padding: 10px 15px;
-    border: 2px solid #555;
-    background-color: #f0f0f0;
+.recipe-option {
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: all 0.2s ease;
     text-align: center;
-}
-button:hover, .btn:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-button.active {
-    background-color: #a8e6cf; /* Light green */
-    border-color: #006400;
+    padding: 10px;
+    border: 2px solid transparent;
+    border-radius: 8px;
 }
 
-.icon-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    min-width: 100px;
+.recipe-option.selected {
+    border-color: #BFECFF;
 }
-.icon-btn img { width: 48px; height: 48px; pointer-events: none; }
-.icon-btn span { pointer-events: none; }
 
-.text-input {
-    font-family: 'Minecraft-Ten', sans-serif;
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    font-size: 1rem;
-    margin-top: 8px; /* Moved to next line */
+.recipe-option img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 5px;
 }
-.input-group { margin-bottom: 15px; }
-.input-group label { display: block; }
-
-/* Specific Components */
-#java-warning { color: var(--red-text); font-size: 0.9rem; margin-left: 15px; }
-.big-arrow { font-size: 3rem; text-align: center; margin: 10px 0; user-select: none; }
-#process-btn { font-size: 1.5rem; padding: 15px 30px; display: block; margin: 20px auto; width: 50%; }
 
 /* Advanced Settings */
-.advanced-settings-wrapper { background-color: var(--advanced-box-color); }
-.advanced-settings-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    cursor: pointer;
+.advanced-settings {
+    text-align: center;
+    margin-bottom: 20px;
 }
-#advanced-settings-box { padding-top: 20px; }
 
-/* Toggle Switch */
-.switch { position: relative; display: inline-block; width: 50px; height: 28px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; }
-.slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
-input:checked + .slider { background-color: #2196F3; }
-input:checked + .slider:before { transform: translateX(22px); }
-.slider.round { border-radius: 34px; }
-.slider.round:before { border-radius: 50%; }
+#advanced-settings-box {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: left;
+}
 
-/* Output Amount Slider */
-.amount-slider { width: 100%; margin-top: 8px; }
+/* Form Elements */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
 
-/* Tooltip */
-.tooltip { position: relative; display: inline-block; cursor: pointer; margin-left: 8px; font-weight: bold; color: #007bff; user-select: none; }
-.tooltip .tooltiptext { visibility: hidden; width: 220px; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 10; bottom: 125%; left: 50%; margin-left: -110px; opacity: 0; transition: opacity 0.3s; }
-.tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 
 /* Crafting Grid */
-.crafting-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 180px; margin: 15px auto; }
-.grid-slot { width: 50px; height: 50px; border: 2px solid #888; background: #fff; text-align: center; font-size: 1.5rem; line-height: 46px; font-family: monospace; text-transform: uppercase; }
-.key-mapping-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.key-mapping-item .key-symbol { font-size: 1.2rem; width: 20px; text-align: center; }
+.crafting-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    width: 150px;
+    margin: 10px auto;
+}
 
-/* JSON Output Area */
-#json-output-container { background-color: var(--json-bg-color); color: white; padding: 20px; border-radius: 5px; margin-top: 20px; min-height: 250px; position: relative; }
-#json-output { white-space: pre; overflow-x: auto; font-family: monospace; font-size: 1rem; line-height: 1.5; }
-.json-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 10px; }
-/* Syntax Highlighting */
-.json-key { color: var(--json-key); }
-.json-namespace { color: var(--json-namespace); }
-.json-string { color: var(--json-string); }
-.json-punctuation, .json-number { color: var(--json-punctuation); }
+.crafting-grid input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
 
-/* Credit Box */
-.credit-box { background-color: var(--credit-box-color); text-align: center; }
-.credit-box a { color: #007bff; text-decoration: none; font-weight: bold; }
-.credit-box a:hover { text-decoration: underline; }
+/* Arrow Separator */
+.arrow-separator {
+    font-size: 2em;
+    text-align: center;
+    margin: 20px 0;
+}
 
-/* Utility Classes */
-.hidden { display: none !important; }
+/* JSON Output */
+#json-output {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Footer */
+footer {
+    background-color: #FFCCEA;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 8px;
+}
