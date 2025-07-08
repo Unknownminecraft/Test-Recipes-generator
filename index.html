@@ -27,38 +27,43 @@
 
             <section class="content-box">
                 <label for="version-select">Version:</label>
-                <input list="versions" id="version-select" name="version-select" value="1.21.50">
+                <input list="versions" id="version-select" name="version-select" value="1.21.50" autocomplete="off">
                 <datalist id="versions">
-                    <option value="1.20">
-                    <option value="1.21.10">
-                    <option value="1.21.50">
-                    <option value="1.21.80">
-                    <option value="1.22.0">
+                    <option value="1.20"></option>
+                    <option value="1.21.10"></option>
+                    <option value="1.21.50"></option>
+                    <option value="1.21.80"></option>
+                    <option value="1.22.0"></option>
                 </datalist>
             </section>
 
             <section class="advanced-settings">
                 <button id="advanced-settings-toggle">Advanced Settings 🔧✏️</button>
-                <div id="advanced-settings-box" style="display: none;">
+                <div id="advanced-settings-box" class="content-box" style="display: none; background-color: #e0e0e0;">
                     </div>
             </section>
 
-            <section class="content-box">
-                <label for="input-item">* Item Name (Input):</label>
-                <input type="text" id="input-item" list="item-suggestions" placeholder="e.g., minecraft:chicken">
-                <datalist id="item-suggestions">
-                    </datalist>
-            </section>
+            <div id="input-section">
+                </div>
 
             <div class="arrow-separator">⬇️</div>
 
             <section class="content-box">
-                <label for="output-item">* Item Name (Output):</label>
-                <input type="text" id="output-item" placeholder="e.g., minecraft:cooked_chicken">
+                <label for="output-item">* Item Name (Output):
+                    <span class="tooltip">?
+                        <span class="tooltiptext">Type the output item name, i.e. minecraft:cooked_chicken.</span>
+                    </span>
+                </label>
+                <input type="text" id="output-item" list="item-suggestions-output" placeholder="e.g., minecraft:cooked_chicken" autocomplete="off">
+                <datalist id="item-suggestions-output"></datalist>
             </section>
 
             <section class="content-box">
-                <label for="output-amount">Output amount:</label>
+                <label for="output-amount">Output amount:
+                    <span class="tooltip">?
+                        <span class="tooltiptext">How many do you want in return? i.e. 10.</span>
+                    </span>
+                </label>
                 <input type="range" id="output-amount" min="1" max="64" value="1">
                 <span id="output-amount-value">1</span>
             </section>
@@ -75,9 +80,9 @@
             </section>
         </main>
 
-        <footer>
+        <footer style="background-color: #FFCCEA;">
             <p>This site is not affiliated with Mojang</p>
-            <p>Made by Unknown Minecraft - <a href="#">YouTube</a> | <a href="#">Discord</a></p>
+            <p>Made by Unknown Minecraft - <a href="https://www.youtube.com" target="_blank">YouTube</a> | <a href="https://discord.com" target="_blank">Discord</a></p>
         </footer>
     </div>
 
