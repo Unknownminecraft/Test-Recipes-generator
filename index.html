@@ -3,101 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Recipe Maker</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Custom Recipe generator</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<div class="page-border">
-    <div class="page-container">
-        <header class="ui-section">
-            <h1>Custom Recipe Maker</h1>
+    <div class="outer-border-box">
+        <header>
+            <h1>Custom Recipe generator</h1>
+            <div class="edition-selection">
+                <button id="bedrock-btn" class="selected">Bedrock</button>
+                <button id="java-btn">Java</button>
+            </div>
+            <p id="java-warning" style="display: none;">Current version does not support java edition</p>
         </header>
 
-        <section class="ui-section">
-            <div class="btn-group">
-                <button id="bedrock-btn" class="btn active">Bedrock</button>
-                <button id="java-btn" class="btn">Java</button>
-                <small id="java-warning" class="hidden">Current version does not support java edition</small>
-            </div>
-        </section>
-        
-        <section class="ui-section">
-            <h2><b class="bold-text">Recipe for:</b> <span id="recipe-name-display">Furnace</span></h2>
-            <div id="recipe-type-selector" class="btn-group">
-                </div>
-        </section>
+        <main>
+            <section class="content-box recipe-type-selection">
+                <h2 id="recipe-type-heading">Recipe for Furnace</h2>
+                <div class="recipe-options">
+                    </div>
+            </section>
 
-        <section class="ui-section">
-            <div class="input-group">
-                <label for="version-input">Version 🗓️</label>
-                <input type="text" id="version-input" list="version-list" class="text-input" value="1.21.50">
-                <datalist id="version-list">
-                    <option value="1.20"></option>
-                    <option value="1.21.10"></option>
-                    <option value="1.21.50"></option>
-                    <option value="1.21.80"></option>
-                    <option value="1.22.0"></option>
+            <section class="content-box">
+                <label for="version-select">Version:</label>
+                <input list="versions" id="version-select" name="version-select" value="1.21.50">
+                <datalist id="versions">
+                    <option value="1.20">
+                    <option value="1.21.10">
+                    <option value="1.21.50">
+                    <option value="1.21.80">
+                    <option value="1.22.0">
                 </datalist>
-            </div>
-        </section>
-        
-        <section class="ui-section advanced-settings-wrapper">
-            <div class="advanced-settings-header">
-                 <h2 id="toggle-advanced">Advanced Settings 🔧✏️</h2>
-                 <label class="switch" title="Remember settings between recipe changes">
-                    <input type="checkbox" id="remember-toggle">
-                    <span class="slider round"></span>
-                 </label>
-            </div>
-            <div id="advanced-settings-box" class="hidden">
-                </div>
-        </section>
+            </section>
 
-        <div id="main-ui-container">
-            </div>
-        
-        <div class="big-arrow">⬇️</div>
-        
-        <section class="ui-section" id="output-section">
-             <div class="input-group">
-                <label for="output-item-input">* Item Name (Output) 📝<span class="tooltip">?<span class="tooltiptext">Type the output item name, i.e. minecraft:cooked_beef</span></span></label>
-                <input type="text" id="output-item-input" class="text-input" placeholder="e.g., minecraft:diamond">
-            </div>
-        </section>
-        
-        <section class="ui-section" id="output-amount-section">
-             <div class="input-group">
-                <label for="output-count-slider">Output amount: <span id="slider-value-display">1</span><span class="tooltip">?<span class="tooltiptext">How many do you want in return? i.e. 10</span></span></label>
-                <input type="range" id="output-count-slider" min="1" max="64" value="1" class="amount-slider">
-            </div>
-        </section>
+            <section class="advanced-settings">
+                <button id="advanced-settings-toggle">Advanced Settings 🔧✏️</button>
+                <div id="advanced-settings-box" style="display: none;">
+                    </div>
+            </section>
 
-        <button id="process-btn">Process ⚙️</button>
+            <section class="content-box">
+                <label for="input-item">* Item Name (Input):</label>
+                <input type="text" id="input-item" list="item-suggestions" placeholder="e.g., minecraft:chicken">
+                <datalist id="item-suggestions">
+                    </datalist>
+            </section>
 
-        <section id="json-output-section" class="ui-section hidden">
-            <h3>Generated JSON</h3>
-            <div id="json-output-container">
-                <div class="json-controls">
-                    <button id="copy-btn" class="btn">Copy</button>
-                    <button id="download-btn" class="btn">Download file</button>
-                </div>
-                <pre><code id="json-output"></code></pre>
+            <div class="arrow-separator">⬇️</div>
+
+            <section class="content-box">
+                <label for="output-item">* Item Name (Output):</label>
+                <input type="text" id="output-item" placeholder="e.g., minecraft:cooked_chicken">
+            </section>
+
+            <section class="content-box">
+                <label for="output-amount">Output amount:</label>
+                <input type="range" id="output-amount" min="1" max="64" value="1">
+                <span id="output-amount-value">1</span>
+            </section>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="process-btn" style="font-size: 1.5em; padding: 10px 20px;">Process ⚙️</button>
             </div>
-        </section>
-        
-        <footer class="ui-section credit-box">
-            <p><b>This site is not affiliated with Mojang</b></p>
-            <p>Made by Unknown Minecraft</p>
-            <p>
-                <a href="https://youtube.com/@decodingmnetwork?si=I8s6gNYWRPU-ISZw" target="_blank">[YouTube]</a> / 
-                <a href="https://discord.gg/jx4p9x9fQv" target="_blank">[Discord]</a>
-            </p>
+
+            <section class="content-box" style="margin-top: 20px;">
+                <h3>JSON Output</h3>
+                <pre id="json-output"></pre>
+                <button id="copy-btn">Copy</button>
+                <button id="download-btn">Download file</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>This site is not affiliated with Mojang</p>
+            <p>Made by Unknown Minecraft - <a href="#">YouTube</a> | <a href="#">Discord</a></p>
         </footer>
-
     </div>
-</div>
 
-<script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
